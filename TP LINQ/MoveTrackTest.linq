@@ -46,18 +46,20 @@ void Main()
 			throw new ArgumentNullException($"No playlist exist for {playlistName}");
 		}
 
-		List<int> trackIds = new List<int>();
-		trackIds.Add(793);
-		trackIds.Add(543);
+		List<MoveTrackView> moveTracks = new();
+		moveTracks.Add(new MoveTrackView() { TrackId = 822, TrackNumber = 1 });
+		moveTracks.Add(new MoveTrackView() { TrackId = 756, TrackNumber = 2 });
+		moveTracks.Add(new MoveTrackView() { TrackId = 543, TrackNumber = 3 });
+		moveTracks.Add(new MoveTrackView() { TrackId = 793, TrackNumber = 4 });
 
 
 		//	show that both the playlist and track does not exist
-		Console.WriteLine("Before Removing Track");
+		Console.WriteLine("Before Moving Track");
 		PlaylistTrackServices_FetchPlaylist(userName, playlistName).Dump();
-		PlaylistTrackServices_RemoveTracks(playlistId, trackIds);
+		PlaylistTrackServices_MoveTracks(playlistId, moveTracks);
 
 		//	show that both the playlist and track now exist
-		Console.WriteLine("After Removing Track");
+		Console.WriteLine("After Moving Track");
 		PlaylistTrackServices_FetchPlaylist(userName, playlistName).Dump();
 	}
 
@@ -91,11 +93,11 @@ private Exception GetInnerException(Exception ex)
 #endregion
 
 
-public void PlaylistTrackServices_RemoveTracks(int playlistId, List<int> trackIds)
+public void PlaylistTrackServices_MoveTracks(int playlistId, List<MoveTrackView> moveTracks)
 {
 	//	local variables
-	PlaylistTracks playlistTrackToRemove = null;
-	PlaylistTracks playlistTrackToRenumber = null;
+	List<PlaylistTracks> scratchPadPlaylistTracks = null;
+	int tracknumber = 0;
 
 	//	we need a container to hold x number of Exception messages
 	List<Exception> errorlist = new List<System.Exception>();
@@ -106,60 +108,115 @@ public void PlaylistTrackServices_RemoveTracks(int playlistId, List<int> trackId
 	}
 
 	//var count = trackIds.Count();
-	if (trackIds.Count() == 0)
+	if (moveTracks.Count() == 0)
 	{
 		throw new ArgumentNullException("No list of tracks were submitted");
 	}
 
-	//	obtain the tracks to keep
-	//	create a query to extract the "keep" tracks from the incoming data
-	//	we want all playlist tracks that are part of playlist and not in the collection
-	//		if tracks that we are removing
-	var keeplist = PlaylistTracks
-						.AsEnumerable()
-						.Where(x => x.PlaylistId == playlistId
-								&& trackIds.All(tid => tid != x.TrackId))
-						.OrderBy(x => x.TrackNumber).ToList();
+	//  check that we have items to move (track number greater than zero)
+	int count = moveTracks
+		.Where(x => x.TrackNumber > 0)
+		.Count();
 
-	foreach (var id in trackIds)
+	if (count == 0)
 	{
-		playlistTrackToRemove = PlaylistTracks
-									.Where(x => x.PlaylistId == playlistId
-										&& x.TrackId == id)
-									.FirstOrDefault();
-		if (playlistTrackToRemove != null)
-		{
-			PlaylistTracks.Remove(playlistTrackToRemove);
-		}
+		throw new ArgumentNullException("No tracks were provided to be move");
 	}
 
-	int tracknumber = 1;
-	foreach (var item in keeplist)
+	//  check that we have items to move (track number greater than zero)
+	count = moveTracks
+	   .Where(x => x.TrackNumber < 0)
+	   .Count();
+
+	if (count > 0)
 	{
-		playlistTrackToRenumber = PlaylistTracks
-									.Where(x => x.PlaylistId == playlistId
-									&& x.TrackId == item.TrackId)
-									.FirstOrDefault();
-		if (playlistTrackToRenumber != null)
+		throw new ArgumentNullException("There are track number less than zero");
+	}
+
+	List<MoveTrackView> tracks = moveTracks
+									.Where(x => x.TrackNumber > 0)
+									.GroupBy(x => x.TrackNumber)
+									.Where(gb => gb.Count() > 1)
+									.Select(gb => new MoveTrackView
+									{
+										TrackId = 0,
+										TrackNumber = gb.Key
+									}).ToList();
+
+	//	check for any duplicate track number
+	foreach (var t in tracks)
+	{
+		errorlist.Add(new Exception($"Track number {t.TrackNumber} is used more than once"));
+	}
+
+	// reorder the tracks
+	scratchPadPlaylistTracks = PlaylistTracks
+								.Where(x => x.PlaylistId == playlistId)
+								.OrderBy(x => x.TrackNumber)
+								.Select(x => x).ToList();
+
+	//	reset all of our track numbers to zero
+	foreach (var playlistTrack in scratchPadPlaylistTracks)
+	{
+		playlistTrack.TrackNumber = 0;
+	}
+
+	//	update the playlist track numbers with move track numbers
+	foreach (var moveTrack in moveTracks)
+	{
+		PlaylistTracks playlistTrack = PlaylistTracks
+										.Where(x => x.TrackId == moveTrack.TrackId)
+										.Select(x => x).FirstOrDefault();
+
+		//  check to see if the playlist track exist in the PlaylistTracks
+		if (playlistTrack == null)
 		{
-			playlistTrackToRenumber.TrackNumber = tracknumber;
-			PlaylistTracks.Update(playlistTrackToRenumber);
-
-			//	this library is not directly accessable by LinqPAD
-			//	EntityEntry<PlaylistTracks> updating = _context.Entry(playlistTrackToRenumber);
-			//	updating.State = EntityState.Modify;
-
-			tracknumber++;
+			var songName = Tracks
+							.Where(x => x.TrackId == moveTrack.TrackId)
+							.Select(x => x.Name)
+							.FirstOrDefault();
+			errorlist.Add(new Exception($"The track {songName} cannot be found in your playlist.  Please refresh playlist"));
 		}
 		else
 		{
-			var songName = Tracks
-							.Where(x => x.TrackId == item.TrackId)
-							.Select(x => x.Name)
-							.FirstOrDefault();
-			errorlist.Add(new Exception($"The track {songName} is no longer on file.  Please remove"));
+			playlistTrack.TrackNumber = moveTrack.TrackNumber;
 		}
 	}
+
+	if (errorlist.Count() == 0)
+	{
+		foreach (var playlistTrack in scratchPadPlaylistTracks)
+		{
+			bool wasFound = true;
+			//  only want to process those track numbers that are empty
+			if (playlistTrack.TrackNumber == 0)
+			{
+				while (wasFound)
+				{
+					//  we want to increment the track number and process until 
+					//		the value is not found in the scratchPadPlaylistTracks
+					tracknumber++;
+					wasFound = scratchPadPlaylistTracks
+								.Where(x => x.TrackNumber == tracknumber)
+								.Select(x => x)
+								.Any();
+				}
+				playlistTrack.TrackNumber = tracknumber;
+			}
+		}
+	}
+
+	if (errorlist.Count() > 0)
+	{
+		throw new AggregateException("Unable to remove request tracks.  Check Concerns", errorlist);
+	}
+	else
+	{
+		//	all work has been staged
+		SaveChanges();
+
+	}
+
 
 	if (errorlist.Count() > 0)
 	{
