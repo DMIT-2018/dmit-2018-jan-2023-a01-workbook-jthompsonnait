@@ -4,6 +4,7 @@
     {
         #region Fields
         private string myName = string.Empty;
+        private int oddEven;
         #endregion
 
         //  Method invoked when the component is ready to start having
@@ -14,6 +15,19 @@
             await base.OnInitializedAsync();
             Random rnd = new Random();
             int oddEven = rnd.Next(0, 25);
+            if (oddEven % 2 == 0)
+            {
+                myName = $"James is even {oddEven}";
+            }
+            else
+            {
+                myName = null;
+            }
+        }
+        private void RandomValue()
+        {
+            Random rnd = new Random();
+            oddEven = rnd.Next(0, 25);
             if (oddEven % 2 == 0)
             {
                 myName = $"James is even {oddEven}";
