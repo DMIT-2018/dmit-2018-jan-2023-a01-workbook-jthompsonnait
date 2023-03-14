@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "BlazorWebApp/1.0.0": {
         "dependencies": {
+          "ChinookSystem": "1.0.0",
           "MatBlazor": "2.8.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "6.0.13",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.13",
@@ -579,6 +580,11 @@
             "fileVersion": "4.700.19.56404"
           }
         }
+      },
+      "ChinookSystem/1.0.0": {
+        "runtime": {
+          "ChinookSystem.dll": {}
+        }
       }
     }
   },
@@ -1007,6 +1013,11 @@
       "sha512": "sha512-CeWTdRNfRaSh0pm2gDTJFwVaXfTq6Xwv/sA887iwPTneW7oMtMlpvDIO+U60+3GWTB7Aom6oQwv5VZVUhQRdPQ==",
       "path": "system.windows.extensions/4.7.0",
       "hashPath": "system.windows.extensions.4.7.0.nupkg.sha512"
+    },
+    "ChinookSystem/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

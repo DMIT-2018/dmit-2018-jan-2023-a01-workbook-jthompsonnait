@@ -1084,6 +1084,16 @@
             "rid": "win"
           }
         }
+      },
+      "ChinookSystem/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/ChinookSystem.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChinookSystem.dll": {}
+        }
       }
     }
   },
@@ -2713,10 +2723,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "ChinookSystem/1.0.0": {
+      "type": "project",
+      "path": "../ChinookSystem/ChinookSystem.csproj",
+      "msbuildProject": "../ChinookSystem/ChinookSystem.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "ChinookSystem >= 1.0.0",
       "MatBlazor >= 2.8.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 6.0.13",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.13",
@@ -2757,7 +2773,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\OD\\OneDrive - NAIT\\Jan 2023\\dmit-2018-jan-2023-a01-workbook-jthompsonnait\\BlazorWebApp\\ChinookSystem\\ChinookSystem.csproj": {
+              "projectPath": "C:\\OD\\OneDrive - NAIT\\Jan 2023\\dmit-2018-jan-2023-a01-workbook-jthompsonnait\\BlazorWebApp\\ChinookSystem\\ChinookSystem.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

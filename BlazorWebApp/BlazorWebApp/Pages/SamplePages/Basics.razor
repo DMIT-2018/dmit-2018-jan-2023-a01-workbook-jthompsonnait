@@ -1,3 +1,24 @@
 ﻿@page "/SamplePages/Basics"
-<h3>Basics</h3>
+<PageTitle>Review Basics</PageTitle>
+<h1>Basics of Blazor Page</h1>
 
+@{
+    // The razor page (Blazor) contains both C# and HTML code
+    //  The @ symbol takes processing from the HTML environment
+    //      and moves it to the C# environment
+    //  Processing any HTML code moves processing into the HTML environment
+}
+
+<h3>Demonstration of OnInitializedAsync processing</h3>
+<p>
+    @if (string.IsNullOrWhiteSpace(myName))
+    {
+        <p>The random number is odd [@oddEven]</p>
+    }
+    else
+    {
+        <p>@myName</p>
+
+    }
+</p>
+<button class="btn-success" @onclick="RandomValue">Random Value</button>

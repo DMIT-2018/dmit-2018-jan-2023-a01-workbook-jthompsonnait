@@ -76,3 +76,5 @@ C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\Bla
 C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\obj\Debug\net6.0\BlazorWebApp.genruntimeconfig.cache
 C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\obj\Debug\net6.0\ref\BlazorWebApp.dll
 C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\bin\Debug\net6.0\MatBlazor.dll
+C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\bin\Debug\net6.0\ChinookSystem.dll
+C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\bin\Debug\net6.0\ChinookSystem.pdb

@@ -1,0 +1,27 @@
+﻿@page "/SamplePages/Invoice"
+<PageTitle>Invoice</PageTitle>
+
+<h3>Invoice #@invoice.InvoiceNo</h3>
+<EditForm Model="@invoice" OnSubmit="@HandleSubmit">
+    <div>
+        <p>
+            <label>Invoice Date</label>
+            <label>@invoice.InvoiceDate.ToShortDateString()</label>
+        </p>
+    </div>
+    <div>
+        <p>
+            <label>Sub Total</label>
+            <label>@invoice.SubTotal</label>
+        </p>
+        <p>
+            <label>Tax</label>
+            <label>@invoice.Tax</label>
+        </p>
+    </div>
+    <button type="submit">Submit</button>
+</EditForm>
+<div>
+    <h4>@feedBack</h4>
+</div>
+
