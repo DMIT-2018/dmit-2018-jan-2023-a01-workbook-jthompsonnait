@@ -2,11 +2,59 @@
 <PageTitle>Invoice</PageTitle>
 
 <h3>Invoice #@invoice.InvoiceNo</h3>
-<EditForm Model="@invoice" OnSubmit="@HandleSubmit">
+@{
+    // OnSubmit
+    //  The OnSubmit event fires when the user clicks on the Submit button
+    //      in the form.
+    //  The handler takes as an argument the EditContext object and is used
+    //      to trigger some custom logic based on the validity of the form.
+    //  NOTE:   When there is handler for the OnSubmit event, the 
+    //              OnValidSubmit and OnInvalidSubmit events will not fired.
+
+    // OnValidSubmit
+    //  The OnValidSubmit event fires when the form is submitted and there
+    //      are no validation errors.
+    //  It is mapped to OnValidSubmit event of the Microsoft EditForm.  Its
+    //      handler takes the EditContext as an argument
+
+    // OnInvalidSubmit
+    //  The OnInvalidSubmit event fires when there are validation errors in
+    //      the Form upon its submission.
+    //  It is mapped to OnInValidSubmit event of the Microsoft EditForm.  Its
+    //      handler takes the EditContext as an argument
+
+    //  NOTE:  We can use none of these vents or one of these events.  The only
+    //      situation where we can use two events is when we set
+    //      OnValidSubmit and OnInvalidSubmit together.  Neither of those two
+    //      events can be consumed if the OnSubmit is set.
+
+}
+
+
+
+<EditForm Model="@invoice" OnValidSubmit="@HandleValidSubmit"
+          OnInvalidSubmit="@HandleInValidSubmit">
+    <DataAnnotationsValidator/>
+    @*The ValidationSummary component can simply be dropped into an EditForm in our
+        mark-up.  No additional parameters are required at all.
+    *@
+    @*<ValidationSummary/>*@
     <div>
         <p>
             <label>Invoice Date</label>
             <label>@invoice.InvoiceDate.ToShortDateString()</label>
+        </p>
+    </div>
+    <div>
+        <p>
+            <label>Sale Person</label>
+            <InputText id="salePerson" @bind-Value="invoice.SalePerson"></InputText>
+            <ValidationMessage For="() => invoice.SalePerson"/>
+        </p>
+        <p>
+            <label>Payment Type</label>
+            <InputText id="paymentType" @bind-Value="invoice.PaymentType"></InputText>
+            <ValidationMessage For="() => invoice.PaymentType"/>
         </p>
     </div>
     <div>
