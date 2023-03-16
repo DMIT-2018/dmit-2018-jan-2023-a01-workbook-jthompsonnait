@@ -18,7 +18,6 @@ namespace ChinookSystem.ViewModels
         [StringLength(6, ErrorMessage = "Name is too long")]
         public string SalePerson { get; set; }
 
-        [Required]
-        public string PaymentType { get; set; }
+        public string PaymentType { get; set; } = "Unknown";
     }
 }

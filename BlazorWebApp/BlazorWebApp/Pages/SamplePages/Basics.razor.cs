@@ -1,7 +1,11 @@
-﻿namespace BlazorWebApp.Pages.SamplePages
+﻿using Microsoft.AspNetCore.Components;
+
+namespace BlazorWebApp.Pages.SamplePages
 {
     public partial class Basics
     {
+        [Inject]
+        protected NavigationManager? NavigationManager { get; set; }
         #region Fields
         private string myName = string.Empty;
         private int oddEven;
