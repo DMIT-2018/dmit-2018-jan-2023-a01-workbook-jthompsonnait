@@ -1,10 +1,12 @@
 ﻿using ChinookSystem.ViewModels;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
 namespace BlazorWebApp.Pages.SamplePages
 {
     public partial class AdvancedInvoice
     {
+
         enum PaymentTypes
         {
             Unknown,
@@ -25,6 +27,14 @@ namespace BlazorWebApp.Pages.SamplePages
         private ValidationMessageStore? messageStore;
         #endregion
 
+        #region Properties
+        [Parameter]
+        public EventCallback<string> OnSelectionChanged { get; set; }
+
+        //  need to inject the NavigationManager os we can do a redirect back to the index page
+        [Inject]
+        protected NavigationManager? NavigationManager { get; set; }
+        #endregion
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
@@ -49,13 +59,21 @@ namespace BlazorWebApp.Pages.SamplePages
         {
             // clear the message store if there is any existing validation errors.
             messageStore?.Clear();
-            
+
             //  custom validation logic
             //  payment type cannot be set to "Unknown"
             if (invoice.PaymentType == "Unknown")
             {
                 messageStore?.Add(() => invoice.PaymentType, "Payment type cannot be set to unknown");
             }
+        }
+        //  called when [payment type is click]
+        private async void OnPaymentTypeClick()
+        {
+            //  waiting for payment type to finish changing
+            await OnSelectionChanged.InvokeAsync(invoice.PaymentType);
+            //  manually call the validation for the edit context
+            editContext?.Validate();
         }
 
         private void HandleSubmit()

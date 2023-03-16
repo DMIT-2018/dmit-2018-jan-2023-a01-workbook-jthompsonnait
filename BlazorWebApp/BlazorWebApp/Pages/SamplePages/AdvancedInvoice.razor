@@ -8,7 +8,7 @@
     @*The ValidationSummary component can simply be dropped into an EditForm in our
     mark-up.  No additional parameters are required at all.
     *@
-    <ValidationSummary/>
+    @*<ValidationSummary/>*@
     <div>
         <p>
             <label>Invoice Date</label>
@@ -23,14 +23,14 @@
         </p>
         <p>
             <label>Payment Type</label>
-            <InputSelect @bind-Value="invoice.PaymentType">
+            <InputSelect @bind-Value="invoice.PaymentType" @onclick="() => OnPaymentTypeClick()">
                 @* iterate the enum PaymentTypes and get each value within it. *@
                 @foreach (var paymentType in Enum.GetValues(typeof(PaymentTypes)))
                 {
                     <option value="@paymentType">@paymentType</option>
                 }
             </InputSelect>
-            @*<ValidationMessage For="() => invoice.PaymentType" />*@
+            <ValidationMessage For="() => invoice.PaymentType" />
         </p>
     </div>
     <div>
@@ -43,8 +43,12 @@
             <label>@invoice.Tax</label>
         </p>
     </div>
-    <button type="submit">Submit</button>
+    @* disabled is set by seeing whether context is modified or is valid*@
+    <MatButton type="submit" Label="Click me" Raised="true"
+               Disabled="@(!context.IsModified() || !context.Validate())"/>
 </EditForm>
+<MatButton Label="Index Page" Raised="true" @onclick="@(() => 
+    NavigationManager.NavigateTo("/"))"/>
 <div>
     <h4>@feedBack</h4>
 </div>
