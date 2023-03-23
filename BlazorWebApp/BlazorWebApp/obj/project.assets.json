@@ -1094,6 +1094,19 @@
         "runtime": {
           "bin/placeholder/ChinookSystem.dll": {}
         }
+      },
+      "PlaylistManagementSystem/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.15"
+        },
+        "compile": {
+          "bin/placeholder/PlaylistManagementSystem.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PlaylistManagementSystem.dll": {}
+        }
       }
     }
   },
@@ -2728,6 +2741,11 @@
       "type": "project",
       "path": "../ChinookSystem/ChinookSystem.csproj",
       "msbuildProject": "../ChinookSystem/ChinookSystem.csproj"
+    },
+    "PlaylistManagementSystem/1.0.0": {
+      "type": "project",
+      "path": "../PlaylistManagementSystem/PlaylistManagementSystem.csproj",
+      "msbuildProject": "../PlaylistManagementSystem/PlaylistManagementSystem.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2738,7 +2756,8 @@
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.13",
       "Microsoft.AspNetCore.Identity.UI >= 6.0.13",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.13",
-      "Microsoft.EntityFrameworkCore.Tools >= 6.0.13"
+      "Microsoft.EntityFrameworkCore.Tools >= 6.0.13",
+      "PlaylistManagementSystem >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2776,6 +2795,9 @@
           "projectReferences": {
             "C:\\OD\\OneDrive - NAIT\\Jan 2023\\dmit-2018-jan-2023-a01-workbook-jthompsonnait\\BlazorWebApp\\ChinookSystem\\ChinookSystem.csproj": {
               "projectPath": "C:\\OD\\OneDrive - NAIT\\Jan 2023\\dmit-2018-jan-2023-a01-workbook-jthompsonnait\\BlazorWebApp\\ChinookSystem\\ChinookSystem.csproj"
+            },
+            "C:\\OD\\OneDrive - NAIT\\Jan 2023\\dmit-2018-jan-2023-a01-workbook-jthompsonnait\\BlazorWebApp\\PlaylistManagementSystem\\PlaylistManagementSystem.csproj": {
+              "projectPath": "C:\\OD\\OneDrive - NAIT\\Jan 2023\\dmit-2018-jan-2023-a01-workbook-jthompsonnait\\BlazorWebApp\\PlaylistManagementSystem\\PlaylistManagementSystem.csproj"
             }
           }
         }
@@ -2837,5 +2859,16 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore.SqlServer from 6.0.15 to 6.0.13. Reference the package directly from the project to select a different version. \r\n BlazorWebApp -> PlaylistManagementSystem -> Microsoft.EntityFrameworkCore.SqlServer (>= 6.0.15) \r\n BlazorWebApp -> Microsoft.EntityFrameworkCore.SqlServer (>= 6.0.13)",
+      "libraryId": "Microsoft.EntityFrameworkCore.SqlServer",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

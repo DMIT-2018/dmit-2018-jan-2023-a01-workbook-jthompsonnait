@@ -1,0 +1,105 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "PlaylistManagementContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": "DAL",
+   "OutputPath": "Entities",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "PlaylistManagementSystem",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[Albums]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Artists]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUserClaims]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUserLogins]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUserRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AspNetUsers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Customers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Employees]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Genres]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[InvoiceLines]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Invoices]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[MediaTypes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Playlists]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PlaylistTracks]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Tracks]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[WorkingVersions]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "W309-JThompson.ChinookSept2018",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": false,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false,
+   "UseT4": false
+}

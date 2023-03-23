@@ -2,11 +2,29 @@
 <ArrayOfArrayOfArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ArrayOfArrayOfString>
     <ArrayOfString>
-      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\Pages\SamplePages\AdvancedInvoice.razor</string>
-      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\Pages\SamplePages\AdvancedInvoice.razor.cs</string>
+      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\PlaylistManagementSystem\DAL\PlaylistManagementContext.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\ChinookSystem\ViewModels\InvoiceView.cs</string>
+      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\Pages\SamplePages\Invoice.razor</string>
+      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\Pages\SamplePages\Invoice.razor.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\PlaylistManagementSystem\BLL\PlaylistTrackServices.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\PlaylistManagementSystem\PlaylistManagementExtension.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\Program.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\appsettings.json</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\PlaylistManagementSystem\ViewModels\WorkingVersionView.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\PlaylistManagementSystem\Entities\WorkingVersion.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

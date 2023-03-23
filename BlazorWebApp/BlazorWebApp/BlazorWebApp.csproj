@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ChinookSystem\ChinookSystem.csproj" />
+    <ProjectReference Include="..\PlaylistManagementSystem\PlaylistManagementSystem.csproj" />
   </ItemGroup>
 
 </Project>
