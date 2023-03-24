@@ -1,0 +1,156 @@
+﻿@page "/SamplePages/Basics"
+<PageTitle>Review page basics</PageTitle>
+<style>
+    #blazor-error-ui {
+        background: lightyellow;
+        bottom: 0;
+        box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+        display: none;
+        left: 0;
+        padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+    }
+
+        #blazor-error-ui .dismiss {
+            cursor: pointer;
+            position: absolute;
+            right: 0.75rem;
+            top: 0.5rem;
+        }
+</style>
+<h1>Basic of Blazor Page (Review)</h1>
+
+
+
+
+@{
+    //  The cshtml page contains both cs code and html code
+    //  The @ symbol takes processing from the html environment
+    //      and moves it to the C# environment
+    //  Processing any html code moves processing into the html
+    //      environment
+}
+<h3>Demonstration of using methods</h3>
+<p>
+    @if (string.IsNullOrWhiteSpace(myName))
+    {
+    <p>The random number is odd [@oddEven}</p>
+    }
+    else
+    {
+    <p>@myName</p>
+    }
+</p>
+<button class="btn-success" @onclick="RandomValue">
+    Random Value
+</button>
+<br />
+<section class="setflex">
+    <div class=onethird>
+        <h3>TextBoxes</h3>
+        <label>
+            Enter an Email
+            <input type="email" @bind="emailText"
+                   placeholder="enter email" />
+        </label>
+        <br />
+        <label>
+            Enter an password
+            <input type="password" @bind="passwordText"
+                   placeholder="enter password" />
+        </label>
+        <br />
+        <label>
+            Enter an Date
+            <input type="date" @bind="dateText" />
+        </label>
+        <br />
+        @*        <label>
+        Enter an Time
+        <input type="time" @bind="timeText" />
+        </label>*@
+        <br />
+        <button class="btn-success" @onclick="TextSubmit">
+            Text Submit
+        </button>
+    </div>
+    <div class=onethird>
+        <h3>Radiobuttons CheckBox TextArea</h3>
+
+        <label>
+            Select favourite meal<br />
+        </label>
+        @*<input type="radio" value="breakfast" asp-for="Meal"/>
+        &nbsp;Breakfast<br/>
+        <input type="radio" value="lunch" asp-for="Meal"/>
+        &nbsp;Lunch<br/>
+        <input type="radio" value="Supper" asp-for="Meal"/>
+        &nbsp;Supper<br/>
+        <input type="radio" value="Snacks" asp-for="Meal"/>
+        &nbsp;Snacks<br/>
+        *@
+        @foreach (var item in @meals)
+        {
+            @*  Need a space before the display item *@
+            <input type="radio" @bind="meal" /> @item
+
+            <br />
+        }
+        <label>
+            <input type="checkbox" value="true" @bind="acceptanceBox" />
+            &nbsp; I agree to terms
+        </label>
+        <br />
+        <label>
+            Message
+            <textarea rows="5" cols="50" placeholder="enter message"
+                      @bind="messageBody"></textarea>
+        </label>
+        <button class="btn-success" @onclick="RadioCheckAreaSubmit">
+            Radio/Check/Area Submit
+        </button>
+    </div>
+    <div class=onethird>
+        <h3>List and Slider</h3>
+        <label>
+            Slect your favourite Ride
+            <select asp-for="MyRide">
+                <option value="0">Select ride ...</option>
+                @foreach (var ride in @rides)
+                {
+                    <option value="@ride.ValueID">@ride.DisplayText</option>
+                }
+            </select>
+        </label>
+        <br />
+        <label>
+            Select your favorite Vacation Spot
+            <input type="text" @bind="vacationSpot"
+                   list="VacationChoices" />
+            <datalist id="VacationChoices">
+                @foreach (var spot in @vacationSpots)
+                {
+                    <option value="@spot"></option>
+                    //  <option value="@spot">@spot</option>
+                }
+            </datalist>
+        </label>
+        <br />
+        <label>
+            Rate the form control reivew (bad to good)
+            <input type="range" min="0" max="10" step="1" value="5"
+                   asp-for="ReviewRating" />
+        </label>
+        <button class="btn-success" @onclick="SliderSubmit">
+            Slider
+        </button>
+
+    </div>
+</section>
+
+
+<div>
+    <h2>@feedback</h2>
+</div>

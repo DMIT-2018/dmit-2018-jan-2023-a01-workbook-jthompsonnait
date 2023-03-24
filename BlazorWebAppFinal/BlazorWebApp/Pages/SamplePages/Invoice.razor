@@ -1,0 +1,65 @@
+﻿@page "/SamplePages/Invoice"
+<PageTitle>Components</PageTitle>
+<h3>Invoice #@invoiceView.InvoiceNo</h3>
+
+@*
+*** OnSubmit ***
+-   The OnSubmit event fires when the user clicks on the Submit button in the Form.
+    Its handler takes as an argument the EditContext object and is used to trigger
+        some custom logic based on the validity of the form.
+NOTE:  When there is a handler for the OnSubmit event, the OnValidSubmit and OnInvalidSubmit events will not be fired.
+
+*** OnValidSubmit ***
+-   The OnValidSubmit event fires when the form is submitted and there are no validation errors.
+    It is mapped to OnValidSubmit event of the Microsoft EditForm. Its handler takes the EditContext as an argument.
+
+*** OnInvalidSubmit ***
+- The OnInvalidSubmit event fires when there are validation errors in the Form upon its submission.
+    It is mapped to OnInvalidSubmit event of the Microsoft EditForm. Its handler takes the EditContext as an argument.
+
+NOTE:   We can use none of these events or one of these events. The only situation where we can use two events is when we set
+            OnValidSubmit and OnInvalidSubmit together. Neither of those two events can be consumed if OnSubmit is set.
+*@
+
+<EditForm Model="@invoiceView" OnValidSubmit="@HandleValidSubmit"
+          OnInvalidSubmit="HandleInValidSubmit">
+    @*The DataAnnotationsValidator is the standard validator type in Blazor.
+    Adding this component within an EditForm component will enable form validation*@
+    <DataAnnotationsValidator />
+    @*The ValidationSummary component can simply be dropped into an EditForm in our mark-up;
+    no additional parameters are required at all.*@
+    @*<ValidationSummary />*@
+    <div>
+        <p>
+            <label>Invoice Date</label>
+            <label>@invoiceView.InvoiceDate.ToShortDateString()</label>
+        </p>
+    </div>
+    <div>
+        <p>
+            <label>Sale Person</label>
+            <InputText id="salePerson" @bind-Value="invoiceView.SalePerson" />
+            <ValidationMessage For="() => invoiceView.SalePerson" />
+        </p>
+        <p>
+            <label>Payment Type</label>
+            <InputText id="paymentType" @bind-Value="invoiceView. PaymentType" />
+            <ValidationMessage For="() => invoiceView.PaymentType" />
+        </p>
+    </div>
+    <div>
+        <p>
+            <label>Sub Total</label>
+            <label>@invoiceView.SubTotal</label>
+        </p>
+        <p>
+            <label>Tax</label>
+            <label>@invoiceView.Tax</label>
+        </p>
+    </div>
+    <button type="submit">Submit</button>
+</EditForm>
+<div>
+    <h4>@feedback</h4>
+</div>
+

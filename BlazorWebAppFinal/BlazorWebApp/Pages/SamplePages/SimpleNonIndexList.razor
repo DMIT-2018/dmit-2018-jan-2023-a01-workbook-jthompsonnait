@@ -1,0 +1,28 @@
+﻿@page "/SamplePages/SimpleNonIndexList"
+@using Microsoft.AspNetCore.Components
+<h3>Simple Non Index List</h3>
+<div>
+</div>
+<div>
+    Employee Name
+    <p>
+        <MatTextField @bind-Value="@employeeName" Label="Employee Name"></MatTextField>
+        <button class="btn-success" @onclick="(() => AddToEmployeeList())">Add Employee</button>
+    </p>
+    <div>
+        <TableTemplate Items="employees" Context="EmployeeView">
+            <TableHeader>
+                <th></th>
+                <th>Employee Id</th>
+                <th>Name</th>
+            </TableHeader>
+            <RowTemplate>
+                <td>
+                    <button class="btn-danger" @onclick="(() => RemoveEmployee(EmployeeView.EmployeeId))">Remove</button>
+                </td>
+                <td>@EmployeeView.EmployeeId</td>
+                <td>@EmployeeView.Name</td>
+            </RowTemplate>
+        </TableTemplate>
+    </div>
+</div>

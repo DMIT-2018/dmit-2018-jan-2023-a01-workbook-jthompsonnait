@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ArrayOfArrayOfArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ArrayOfArrayOfString>
+    <ArrayOfString>
+      <string>C:\OD\OneDrive - NAIT\BlazorWebApp\BlazorWebApp\Program.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\OD\OneDrive - NAIT\BlazorWebApp\BlazorWebApp\Pages\SamplePages\PlaylistManagement.razor</string>
+      <string>C:\OD\OneDrive - NAIT\BlazorWebApp\BlazorWebApp\Pages\SamplePages\PlaylistManagement.razor.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\OD\OneDrive - NAIT\BlazorWebApp\PlaylistManagementSystem\PlaylistManagementExtension.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\OD\OneDrive - NAIT\BlazorWebApp\PlaylistManagementSystem\BLL\PlaylistTrackService.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\OD\OneDrive - NAIT\BlazorWebApp\PlaylistManagementSystem\ViewModels\MoveTrackView.cs</string>
+    </ArrayOfString>
+  </ArrayOfArrayOfString>
+</ArrayOfArrayOfArrayOfString>
