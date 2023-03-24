@@ -78,3 +78,6 @@ C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\Bla
 C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\bin\Debug\net6.0\MatBlazor.dll
 C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\bin\Debug\net6.0\ChinookSystem.dll
 C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\bin\Debug\net6.0\ChinookSystem.pdb
+C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\bin\Debug\net6.0\PlaylistManagementSystem.dll
+C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\bin\Debug\net6.0\PlaylistManagementSystem.pdb

@@ -1,14 +1,26 @@
 ﻿using Microsoft.AspNetCore.Components;
+using PlaylistManagementSystem.BLL;
+using PlaylistManagementSystem.ViewModels;
 
 namespace BlazorWebApp.Pages.SamplePages
 {
     public partial class Basics
     {
+        //  We are now injecting our service into our class using the [Inject] attribute
+        //  Before we would have used the page constructor to add it.
+        //  public Basics(PlaylistTrackService playlistTrackService)
+        //  {
+        //      _playlistTrackService = playlistTrackService;
+        //  }
+        [Inject]
+        protected PlaylistTrackServices? PlaylistTrackServices { get; set; }
+
         [Inject]
         protected NavigationManager? NavigationManager { get; set; }
         #region Fields
         private string myName = string.Empty;
         private int oddEven;
+        private WorkingVersionView workingVersion = new();
         #endregion
 
         //  Method invoked when the component is ready to start having
@@ -40,6 +52,13 @@ namespace BlazorWebApp.Pages.SamplePages
             {
                 myName = null;
             }
+        }
+
+        private async Task GetDatabase()
+        {
+            workingVersion = PlaylistTrackServices.GetWorkingVersion();
+            //  wait for the data to be retrieved before we update the label on the page
+            await InvokeAsync(StateHasChanged);
         }
     }
 }

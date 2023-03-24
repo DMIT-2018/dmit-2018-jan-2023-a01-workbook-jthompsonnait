@@ -24,3 +24,18 @@
 <button class="btn-success" @onclick="RandomValue">Random Value</button>
 <MatButton  Label="Index" Raised="true"
             @onclick="@(()=>NavigationManager.NavigateTo($"/"))">></MatButton>
+<p>
+    <MatButton OnClick="GetDatabase" Label="Get Database Version"Raised="true"/>
+    @if (workingVersion.Build == 0)
+    {
+        <p style="font-weight: bold">Build Version: Unknown</p>
+    }
+    else
+    {
+        <p> Build Version: @workingVersion.Major 
+            @workingVersion.Minor 
+            @workingVersion.Build 
+            Released: @workingVersion.AsOfDate.ToShortDateString()
+        </p>
+    }
+</p>
