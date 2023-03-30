@@ -2,4 +2,88 @@
 <PageTitle>Playlist Management</PageTitle>
 <h3>Playlist Management</h3>
 
+<div id="container">
+    @* left side of the screen*@
+    <div>
+        Search Pattern
+        <p>
+            <MatTextField @bind-Value="searchPattern" />
+        </p>
+        <p>
+            <MatRadioGroup @bind-Value="searchType" TValue="string">
+                <MatRadioButton Value="@("Artist")" Label="Artist" TValue="string" />
+                <MatRadioButton Value="@("Album")" Label="Album" TValue="string" />
+            </MatRadioGroup>
+            <button class="btn-success" onclick="@FetchArtistOrAlbumTracks">Search</button>
+        </p>
+        @if (PaginatorTrackSelection.RowCount == 0)
+        {
+            <p><em>Please enter either a artist or album</em></p>
+        }
+        else
+        {
+            <TableTemplate Items="PaginatorTrackSelection.Results" Context="TrackSelectionView">
+                <TableHeader>
+                    <th></th>
+                    <th class="SortField @GetSortColumn("SongName")" @onclick="@( () => Sort("SongName"))">Song</th>
+                    <th class="SortField @GetSortColumn("AlbumTitle")" @onclick="@( () => Sort("AlbumTitle"))">Album</th>
+                    <th class="SortField @GetSortColumn("ArtistName")" @onclick="@( () => Sort("ArtistName"))">Artist</th>
+                    <th class="SortField @GetSortColumn("Milliseconds")" @onclick="@( () => Sort("Milliseconds"))">Length</th>
+                    <th>Price</th>
+                </TableHeader>
+                <RowTemplate>
+                    <td>
+                        <button class="btn-success" @onclick="(() => AddTrackToPlaylist(TrackSelectionView.TrackId))">Add</button>
+                    </td>
+                    <td>@TrackSelectionView.SongName</td>
+                    <td>@TrackSelectionView.AlbumTitle</td>
+                    <td>@TrackSelectionView.ArtistName</td>
+                    <td>@TrackSelectionView.Length</td>
+                    <td>@TrackSelectionView.Price</td>
+                </RowTemplate>
+            </TableTemplate>
+        }
+    </div>
+    @* right side of the screen*@
+    <div>
+        Enter Playlist Name
+        <p>
+            <MatTextField @bind-Value="@playlistName" Label="Playlist name" />
+        </p>
+        <p>
+            <button class="btn-success" onclick="@FetchPlaylist">Fetch List</button>
+            <button class="btn-danger" onclick="@RemoveTracks">Remove Tracks</button>
+            <button class="btn-success" onclick="@ReorderTracks">Reorder Tracks</button>
+        </p>
+        @if (Playlists.Count == 0)
+        {
+            <p><em>Please enter a playlist</em></p>
+        }
+        else
+        {
+            <TableTemplate Items="Playlists" Context="PlaylistTrackView">
+                <TableHeader>
+                    <th></th>
+                    <th>TRK #</th>
+                    <th>Song</th>
+                    <th>Length</th>
+                    <th>Reorg Trk#</th>
+                </TableHeader>
+                <RowTemplate>
+                    <td>
+                        <MatCheckbox @bind-Value="PlaylistTrackView.Remove" TValue="bool" />
+                    </td>
+                    <td>@PlaylistTrackView.TrackNumber</td>
+                    <td>@PlaylistTrackView.SongName</td>
+                    <td>@PlaylistTrackView.Length</td>
+                    <td><MatTextField @bind-Value="@PlaylistTrackView.NewTrackNumber"/></td>
+                </RowTemplate>
+            </TableTemplate>
+        }
+    </div>
+</div>
+<footer>
+    @feedBack
+</footer>
+
 

@@ -97,3 +97,4 @@ C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\Bla
 C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\bin\Debug\net6.0\System.Text.Encodings.Web.dll
 C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\bin\Debug\net6.0\System.Text.Json.dll
 C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\obj\Debug\net6.0\scopedcss\Pages\SamplePages\PlaylistManagement.razor.rz.scp.css

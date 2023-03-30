@@ -1,0 +1,11 @@
+/* 
+    Isolate css systles to individual pages, views and components to reduce or
+        avoid:
+        Dependencies on global styles that can be challenging to maintian.
+        Style conflicts in nested content
+*/
+#container[b-b7cx7dta8l] {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 40px;
+}
