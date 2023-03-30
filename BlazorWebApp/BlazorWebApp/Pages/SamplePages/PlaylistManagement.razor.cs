@@ -142,11 +142,20 @@ namespace BlazorWebApp.Pages.SamplePages
             }
         }
 
-        private void RemoveTracks()
+        private async Task RemoveTracks()
         {
             try
             {
-
+                List<int> removeTracks = new();
+                foreach (var playlist in Playlists)
+                {
+                    if (playlist.Remove)
+                    {
+                        removeTracks.Add(playlist.TrackId);
+                    }
+                }
+                PlaylistTrackServices.RemoveTracks(playlistId, removeTracks);
+                await FetchPlaylist();
             }
             catch (ArgumentNullException ex)
             {
@@ -172,11 +181,25 @@ namespace BlazorWebApp.Pages.SamplePages
             }
         }
 
-        private void ReorderTracks()
+        private async Task ReorderTracks()
         {
             try
             {
-
+                List<MoveTrackView> moveTracks = new();
+                foreach (var playlist in Playlists)
+                {
+                    if (playlist.NewTrackNumber > 0)
+                    {
+                        moveTracks.Add(new MoveTrackView()
+                            {
+                                TrackId = playlist.TrackId,
+                                TrackNumber = playlist.NewTrackNumber
+                            }
+                        );
+                    }
+                }
+                PlaylistTrackServices.MoveTracks(playlistId, moveTracks);
+                await FetchPlaylist();
             }
             catch (ArgumentNullException ex)
             {

@@ -1,4 +1,5 @@
 ﻿@page "/SamplePages/PlaylistManagement"
+@using BlazorWebApp.BlazorPagination
 <PageTitle>Playlist Management</PageTitle>
 <h3>Playlist Management</h3>
 
@@ -42,6 +43,19 @@
                     <td>@TrackSelectionView.Price</td>
                 </RowTemplate>
             </TableTemplate>
+            <div align="center">
+                <BlazorPager CurrentPage="PaginatorTrackSelection.CurrentPage"
+                             PageCount="PaginatorTrackSelection.PageCount"
+                             VisiblePages="3"
+                             ShowFirstLast="true"
+                             ShowPageNumbers="true"
+                             FirstText="&laquo;"
+                             LastText="&raquo;"
+                             NextText="&rsaquo;"
+                             PreviousText="&lsaquo;"
+                             OnPageChanged="(async e => { CurrentPage = e; await FetchArtistOrAlbumTracks();})">
+                </BlazorPager>
+            </div>
         }
     </div>
     @* right side of the screen*@

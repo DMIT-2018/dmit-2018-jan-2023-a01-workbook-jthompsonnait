@@ -248,14 +248,217 @@ namespace PlaylistManagementSystem.BLL
         //  remove track(s)
         public void RemoveTracks(int playlistId, List<int> trackIds)
         {
+            //	local variables
+            PlaylistTrack playlistTrackToRemove = null;
+            PlaylistTrack playlistTrackToRenumber = null;
 
+            //	we need a container to hold x number of Exception messages
+            List<Exception> errorlist = new List<System.Exception>();
+
+            if (playlistId == 0)
+            {
+                throw new ArgumentNullException("No playlist ID was provided");
+            }
+
+            //var count = trackIds.Count();
+            if (trackIds.Count() == 0)
+            {
+                throw new ArgumentNullException("No list of tracks were submitted");
+            }
+
+            //	obtain the tracks to keep
+            //	create a query to extract the "keep" tracks from the incoming data
+            //	we want all playlist tracks that are part of playlist and not in the collection
+            //		if tracks that we are removing
+            var keeplist = _playlistManagementContext.PlaylistTracks
+                                .AsEnumerable()
+                                .Where(x => x.PlaylistId == playlistId
+                                        && trackIds.All(tid => tid != x.TrackId))
+                                .OrderBy(x => x.TrackNumber).ToList();
+
+            foreach (var id in trackIds)
+            {
+                playlistTrackToRemove = _playlistManagementContext.PlaylistTracks
+                                            .Where(x => x.PlaylistId == playlistId
+                                                && x.TrackId == id)
+                                            .FirstOrDefault();
+                if (playlistTrackToRemove != null)
+                {
+                    _playlistManagementContext.PlaylistTracks.Remove(playlistTrackToRemove);
+                }
+            }
+
+            int tracknumber = 1;
+            foreach (var item in keeplist)
+            {
+                playlistTrackToRenumber = _playlistManagementContext.PlaylistTracks
+                                            .Where(x => x.PlaylistId == playlistId
+                                            && x.TrackId == item.TrackId)
+                                            .FirstOrDefault();
+                if (playlistTrackToRenumber != null)
+                {
+                    playlistTrackToRenumber.TrackNumber = tracknumber;
+                    _playlistManagementContext.PlaylistTracks.Update(playlistTrackToRenumber);
+
+                    //	this library is not directly accessable by LinqPAD
+                    //	EntityEntry<PlaylistTracks> updating = _context.Entry(playlistTrackToRenumber);
+                    //	updating.State = EntityState.Modify;
+
+                    tracknumber++;
+                }
+                else
+                {
+                    var songName = _playlistManagementContext.Tracks
+                                    .Where(x => x.TrackId == item.TrackId)
+                                    .Select(x => x.Name)
+                                    .FirstOrDefault();
+                    errorlist.Add(new Exception($"The track {songName} is no longer on file.  Please remove"));
+                }
+            }
+
+            if (errorlist.Count() > 0)
+            {
+                //  we need to clear the "track changes" otherwise we leave
+                //      our entity system in flux
+                _playlistManagementContext.ChangeTracker.Clear();
+                throw new AggregateException("Unable to remove request tracks.  Check concerns", errorlist);
+            }
+            else
+            {
+                //  all work has been staged
+                _playlistManagementContext.SaveChanges();
+            }
         }
 
         //  move track(s)
         public void MoveTracks(int playlistId, List<MoveTrackView> moveTracks)
         {
+            //	local variables
+            List<PlaylistTrack> scratchPadPlaylistTracks = null;
+            int tracknumber = 0;
 
-        }
+            //	we need a container to hold x number of Exception messages
+            List<Exception> errorlist = new List<System.Exception>();
+
+            if (playlistId == 0)
+            {
+                throw new ArgumentNullException("No playlist ID was provided");
+            }
+
+            //var count = trackIds.Count();
+            if (moveTracks.Count() == 0)
+            {
+                throw new ArgumentNullException("No list of tracks were submitted");
+            }
+
+            //  check that we have items to move (track number greater than zero)
+            int count = moveTracks
+                .Where(x => x.TrackNumber > 0)
+                .Count();
+
+            if (count == 0)
+            {
+                throw new ArgumentNullException("No tracks were provided to be move");
+            }
+
+            //  check that we have items to move (track number greater than zero)
+            count = moveTracks
+               .Where(x => x.TrackNumber < 0)
+               .Count();
+
+            if (count > 0)
+            {
+                throw new ArgumentNullException("There are track number less than zero");
+            }
+
+            List<MoveTrackView> tracks = moveTracks
+                                            .Where(x => x.TrackNumber > 0)
+                                            .GroupBy(x => x.TrackNumber)
+                                            .Where(gb => gb.Count() > 1)
+                                            .Select(gb => new MoveTrackView
+                                            {
+                                                TrackId = 0,
+                                                TrackNumber = gb.Key
+                                            }).ToList();
+
+            //	check for any duplicate track number
+            foreach (var t in tracks)
+            {
+                errorlist.Add(new Exception($"Track number {t.TrackNumber} is used more than once"));
+            }
+
+            // reorder the tracks
+            scratchPadPlaylistTracks = _playlistManagementContext.PlaylistTracks
+                                        .Where(x => x.PlaylistId == playlistId)
+                                        .OrderBy(x => x.TrackNumber)
+                                        .Select(x => x).ToList();
+
+            //	reset all of our track numbers to zero
+            foreach (var playlistTrack in scratchPadPlaylistTracks)
+            {
+                playlistTrack.TrackNumber = 0;
+            }
+
+            //	update the playlist track numbers with move track numbers
+            foreach (var moveTrack in moveTracks)
+            {
+                PlaylistTrack playlistTrack = _playlistManagementContext.PlaylistTracks
+                                                .Where(x => x.TrackId == moveTrack.TrackId)
+                                                .Select(x => x).FirstOrDefault();
+
+                //  check to see if the playlist track exist in the PlaylistTracks
+                if (playlistTrack == null)
+                {
+                    var songName = _playlistManagementContext.Tracks
+                                    .Where(x => x.TrackId == moveTrack.TrackId)
+                                    .Select(x => x.Name)
+                                    .FirstOrDefault();
+                    errorlist.Add(new Exception($"The track {songName} cannot be found in your playlist.  Please refresh playlist"));
+                }
+                else
+                {
+                    playlistTrack.TrackNumber = moveTrack.TrackNumber;
+                }
+            }
+
+            if (errorlist.Count() == 0)
+            {
+                foreach (var playlistTrack in scratchPadPlaylistTracks)
+                {
+                    bool wasFound = true;
+                    //  only want to process those track numbers that are empty
+                    if (playlistTrack.TrackNumber == 0)
+                    {
+                        while (wasFound)
+                        {
+                            //  we want to increment the track number and process until 
+                            //		the value is not found in the scratchPadPlaylistTracks
+                            tracknumber++;
+                            wasFound = scratchPadPlaylistTracks
+                                        .Where(x => x.TrackNumber == tracknumber)
+                                        .Select(x => x)
+                                        .Any();
+                        }
+                        playlistTrack.TrackNumber = tracknumber;
+                    }
+                }
+            }
+
+            if (errorlist.Count() > 0)
+            {
+                //  we need to clear the "track changes" otherwise we leave
+                //      our entity system in flux
+                _playlistManagementContext.ChangeTracker.Clear();
+                throw new AggregateException("Unable to remove request tracks.  Check Concerns", errorlist);
+            }
+            else
+            {
+                //	all work has been staged
+                _playlistManagementContext.SaveChanges();
+
+            }
+
+       }
 
     }
 }
