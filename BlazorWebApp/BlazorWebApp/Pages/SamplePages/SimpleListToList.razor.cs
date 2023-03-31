@@ -4,7 +4,7 @@ using PlaylistManagementSystem.ViewModels;
 
 namespace BlazorWebApp.Pages.SamplePages
 {
-    public partial class SimpleListToList
+    public partial class SimpleListToList: ComponentBase
     {
         #region Inject
         //  We are now injecting our service into our class using the [Inject] attribute.
