@@ -1,0 +1,58 @@
+﻿@page "/SamplePages/SimpleListToList"
+@using Microsoft.AspNetCore.Components
+
+<h3>Simple List to List</h3>
+
+<div id="container">
+    <div>
+        <TableTemplate Items="inventory" Context="ExtendedTrackSelectionView">
+            <TableHeader>
+                <th></th>
+                <th>Song</th>
+                <th>Album</th>
+                <th>Artist</th>
+                <th>Length</th>
+                <th>Price</th>
+            </TableHeader>
+            <RowTemplate>
+                <td>
+                    <button class="btn-success" @onclick="(() => AddTrackToCart(ExtendedTrackSelectionView.TrackId))">Add</button>
+                </td>
+                <td>@ExtendedTrackSelectionView.SongName</td>
+                <td>@ExtendedTrackSelectionView.AlbumTitle</td>
+                <td>@ExtendedTrackSelectionView.ArtistName</td>
+                <td>@ExtendedTrackSelectionView.Length</td>
+                <td>@ExtendedTrackSelectionView.Price</td>
+            </RowTemplate>
+        </TableTemplate>
+    </div>
+    <div>
+        <TableTemplate Items="shoppingCart" Context="ExtendedTrackSelectionView">
+                <TableHeader>
+                    <th></th>
+                    <th>Song</th>
+                    <th>Album</th>
+                    <th>Artist</th>
+                    <th>Length</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </TableHeader>
+                <RowTemplate>
+                    <td>
+                        <button class="btn-danger" @onclick="(() => RemoveTrackFromCart(ExtendedTrackSelectionView.TrackId))">Remove</button>
+                    </td>
+                    <td>@ExtendedTrackSelectionView.SongName</td>
+                    <td>@ExtendedTrackSelectionView.AlbumTitle</td>
+                    <td>@ExtendedTrackSelectionView.ArtistName</td>
+                    <td>@ExtendedTrackSelectionView.Length</td>
+                    <td><input type="number" @bind-value="ExtendedTrackSelectionView.Quantity"/></td>
+                    <td>@ExtendedTrackSelectionView.Price</td>
+                    <td>@ExtendedTrackSelectionView.Total</td>
+                    <td>
+                        <button class="btn-success" @onclick="(() => RefreshTotal(ExtendedTrackSelectionView.TrackId))">Recalc</button>
+                    </td>
+                </RowTemplate>
+            </TableTemplate>
+    </div>
+</div>

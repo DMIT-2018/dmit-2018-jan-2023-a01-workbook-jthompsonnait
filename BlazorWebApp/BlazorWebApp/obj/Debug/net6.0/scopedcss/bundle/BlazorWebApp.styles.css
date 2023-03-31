@@ -10,6 +10,12 @@
     grid-template-columns: repeat(2, 1fr);
     column-gap: 40px;
 }
+/* _content/BlazorWebApp/Pages/SamplePages/SImpleListToList.razor.rz.scp.css */
+#container[b-ze9fel4kg1] {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 40px;
+}
 /* _content/BlazorWebApp/Shared/MainLayout.razor.rz.scp.css */
 .page[b-ki56p73jl8] {
     position: relative;

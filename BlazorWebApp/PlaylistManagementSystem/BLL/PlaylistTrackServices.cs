@@ -35,6 +35,24 @@ namespace PlaylistManagementSystem.BLL
                 }).FirstOrDefault();
         }
 
+        public List<ExtendedTrackSelectionView> FetchInventory()
+        {
+            return _playlistManagementContext.Tracks
+                .Take(20)
+                .OrderBy(x => x.Name)
+                .Select(x => new ExtendedTrackSelectionView
+                {
+                    TrackId = x.TrackId,
+                    AlbumTitle = x.Album.Title,
+                    ArtistName = x.Album.Artist.Name,
+                    SongName = x.Name,
+                    Price = x.UnitPrice,
+                    Milliseconds = x.Milliseconds,
+                    Quantity = 1,
+                    Total = x.UnitPrice
+                }).ToList();
+        }
+
         // fetch playlist
         public async Task<List<PlaylistTrackView>> FetchPlaylist(string userName,
             string playlistName)

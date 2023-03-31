@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebApp", "BlazorWebAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChinookSystem", "ChinookSystem\ChinookSystem.csproj", "{A28B081B-D41A-4283-9188-2C004AECA7AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaylistManagementSystem", "PlaylistManagementSystem\PlaylistManagementSystem.csproj", "{F6513A0A-4AB5-49FE-B956-EC2D1AF68FCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaylistManagementSystem", "PlaylistManagementSystem\PlaylistManagementSystem.csproj", "{F6513A0A-4AB5-49FE-B956-EC2D1AF68FCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

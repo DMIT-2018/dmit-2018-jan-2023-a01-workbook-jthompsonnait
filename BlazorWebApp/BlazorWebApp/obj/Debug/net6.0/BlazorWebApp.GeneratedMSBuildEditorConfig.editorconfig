@@ -48,6 +48,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FtcGxlUGFnZXNcSW52b2ljZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/OD/OneDrive - NAIT/Jan 2023/dmit-2018-jan-2023-a01-workbook-jthompsonnait/BlazorWebApp/BlazorWebApp/Pages/SamplePages/SimpleNonIndexList.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FtcGxlUGFnZXNcU2ltcGxlTm9uSW5kZXhMaXN0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/OD/OneDrive - NAIT/Jan 2023/dmit-2018-jan-2023-a01-workbook-jthompsonnait/BlazorWebApp/BlazorWebApp/Shared/LoginDisplay.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luRGlzcGxheS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -67,6 +71,10 @@ build_metadata.AdditionalFiles.CssScope =
 [C:/OD/OneDrive - NAIT/Jan 2023/dmit-2018-jan-2023-a01-workbook-jthompsonnait/BlazorWebApp/BlazorWebApp/Pages/SamplePages/PlaylistManagement.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FtcGxlUGFnZXNcUGxheWxpc3RNYW5hZ2VtZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = b-b7cx7dta8l
+
+[C:/OD/OneDrive - NAIT/Jan 2023/dmit-2018-jan-2023-a01-workbook-jthompsonnait/BlazorWebApp/BlazorWebApp/Pages/SamplePages/SimpleListToList.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2FtcGxlUGFnZXNcU2ltcGxlTGlzdFRvTGlzdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-ze9fel4kg1
 
 [C:/OD/OneDrive - NAIT/Jan 2023/dmit-2018-jan-2023-a01-workbook-jthompsonnait/BlazorWebApp/BlazorWebApp/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=

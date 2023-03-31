@@ -2,23 +2,7 @@
 <ArrayOfArrayOfArrayOfString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ArrayOfArrayOfString>
     <ArrayOfString>
-      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\Pages\SamplePages\PlaylistManagement.razor</string>
-      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\BlazorWebApp\Pages\SamplePages\PlaylistManagement.razor.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\PlaylistManagementSystem\ViewModels\PlaylistTrackView.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\PlaylistManagementSystem\ViewModels\TrackSelectionView.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
       <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\PlaylistManagementSystem\BLL\PlaylistTrackServices.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\OD\OneDrive - NAIT\Jan 2023\dmit-2018-jan-2023-a01-workbook-jthompsonnait\BlazorWebApp\PlaylistManagementSystem\DAL\PlaylistManagementContext.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\jthompson\AppData\Local\SourceServer\c9b7c6ef53daf9cb6138a6667bab73c9903b1d21c42ea48501fdfe550c8d968b\src\libraries\System.Linq.Expressions\src\System\Linq\Expressions\ParameterExpression.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>
